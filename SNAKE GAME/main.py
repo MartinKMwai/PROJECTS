@@ -3,7 +3,7 @@ import random
 
 #constants defined
 GAME_WIDTH = 800
-HEIGHT = 800
+GAME_HEIGHT = 800
 SPEED = 50
 SPACE_SIZE = 50
 BACKGROUND_COLOR = "#000000"
@@ -33,5 +33,17 @@ def game_over():
 window = Tk()
 window.title("Snake Game")
 window.resizable(True, True)
+score = 0
+direction = "up"
+label = Label(window, text = "Score:{}".format(score), font = ("Annabelle", 40 ))
+label.pack()
+canvas = Canvas(window, background = BACKGROUND_COLOR, width =GAME_WIDTH, height = GAME_HEIGHT)
+canvas.pack()
+
+window.update()
+window.width = window.winfo_width()
+window_height = window.winfo_height()
+screen_width = window.winfo_screenwidth()
+
 window.mainloop ()
 
