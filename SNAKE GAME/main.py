@@ -44,6 +44,13 @@ window.update()
 window.width = window.winfo_width()
 window_height = window.winfo_height()
 screen_width = window.winfo_screenwidth()
+screen_height = window.winfo_screenheight()
+
+#adjusting window position
+x = (screen_width*0.5) - (window_width*0.5)
+y = (screen_height*0.5) - (window_height*0.5)
+
+window.geometry(f"{window_height}*{window_width}")
 
 window.mainloop ()
 
