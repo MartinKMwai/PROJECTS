@@ -12,9 +12,24 @@ SNAKE_COLOR = "#00FF00"
 
 
 class Snake:
+    def __init__(self):
+        self.body_size = BODY_PARTS
+        self.coodinates =[]
+        self.squares= []
+
+        for i in range (0, BODY_PARTS):
+            self.coordinates.append([0, 0])
     pass
 
 class Food:
+
+    def __init__(self):
+        x= random.randint(0,(GAME_WIDTH/SPACE_SIZE)-1 )*SPACE_SIZE
+        y= random.randint(0,(GAME_HEIGHT/SPACE_SIZE)-1 )*SPACE_SIZE
+
+        self.coordinates = [x, y]
+        canvas.create_oval (x, y, x+SPACE_SIZE, y+SPACE_SIZE, fill = FOOD_COLOR, tag = Food) 
+
     pass
 
 def next_turn():
@@ -47,11 +62,17 @@ screen_width = window.winfo_screenwidth()
 screen_height = window.winfo_screenheight()
 
 #adjusting window position
-x = (screen_width*0.5) - (window_width*0.5)
-y = (screen_height*0.5) - (window_height*0.5)
+x = int((screen_width/2) - (window_width/2))
+y = int((screen_height/2) - (window_height/2))
 
-#fix the error in the line below
-window.geometry(f"{window_height}*{window_width}")
+
+window.geometry(f"{window_height}x{window_width}+{y}+{x}")
+
+snake = Snake()
+food = Food()
+
+
+
 
 window.mainloop ()
 
