@@ -5,6 +5,7 @@ import random
 GAME_WIDTH = 800
 GAME_HEIGHT = 800
 SPEED = 50
+BODY_PARTS = 5
 SPACE_SIZE = 50
 BACKGROUND_COLOR = "#000000"
 FOOD_COLOR = "#FF0000"
@@ -14,14 +15,14 @@ SNAKE_COLOR = "#00FF00"
 class Snake:
     def __init__(self):
         self.body_size = BODY_PARTS
-        self.coodinates =[]
+        self.coordinates =[]
         self.squares= []
 
         for i in range (0, BODY_PARTS):
             self.coordinates.append([0, 0])
 
         for x, y in self.coordinates:
-            square = canvas.create_rectangle(x, y, x + SPACE_SIZE, Y + SPACE_SIZE, fill = SNAKE_COLOR, tag = Snake_String)  
+            square = canvas.create_rectangle(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill = SNAKE_COLOR, tag = Snake)  
             self.squares.append(square)
     pass
 
