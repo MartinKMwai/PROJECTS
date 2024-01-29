@@ -33,7 +33,7 @@ class Food:
         y= random.randint(0,(GAME_HEIGHT/SPACE_SIZE)-1 )*SPACE_SIZE
 
         self.coordinates = [x, y]
-        canvas.create_oval (x, y, x+SPACE_SIZE, y+SPACE_SIZE, fill = FOOD_COLOR, tag = Food) 
+        canvas.create_oval (x, y, x+SPACE_SIZE, y+SPACE_SIZE, fill = FOOD_COLOR, tag = "food") 
 
     pass
 
@@ -58,7 +58,7 @@ def next_turn(snake, food):
         global score
         score+=1
 
-        label.config(tect = "Score:{}".format(score))
+        label.config(text = "Score:{}".format(score))
         canvas.delete("food")
         food = Food()
 
@@ -92,7 +92,7 @@ def change_direction(new_direction):
     elif new_direction =="down":
         if direction!="up":
             direction = new_direction
-    pass
+    
 
 def check_collisions():
 
