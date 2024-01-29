@@ -37,7 +37,10 @@ class Food:
 
     pass
 
-def next_turn():
+def next_turn(snake, food):
+   # x, y = snake.coordinates[0], snake.coordinates[0]
+
+
     pass
 
 def change_direction(new_direction):
