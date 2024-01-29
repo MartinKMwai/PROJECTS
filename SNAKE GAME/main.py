@@ -2,11 +2,11 @@ from tkinter import *
 import random
 
 #constants defined
-GAME_WIDTH = 800
-GAME_HEIGHT = 800
-SPEED = 50
-BODY_PARTS = 5
-SPACE_SIZE = 50
+GAME_WIDTH = 500
+GAME_HEIGHT = 500
+SPEED = 200
+BODY_PARTS = 3
+SPACE_SIZE = 25
 BACKGROUND_COLOR = "#000000"
 FOOD_COLOR = "#FF0000"
 SNAKE_COLOR = "#00FF00"
@@ -38,15 +38,64 @@ class Food:
     pass
 
 def next_turn(snake, food):
-   # x, y = snake.coordinates[0], snake.coordinates[0]
+    x, y = snake.coordinates[0]
 
+    if direction =="up":
+        y-= SPACE_SIZE
+    elif direction =="down":
+        y+= SPACE_SIZE
+    elif direction == "right":
+        x+= SPACE_SIZE
+    elif direction =="left":
+        x-= SPACE_SIZE
+
+    #update the snake head coordinates
+    snake.coordinates.insert(0, (x, y))
+    square = canvas.create_rectangle(x, y, x+SPACE_SIZE, y+SPACE_SIZE, fill = SNAKE_COLOR)
+    snake.squares.insert(0, square)
+
+    if x == food.coordinates[0] and y == food.coordinates[1]:
+        global score
+        score+=1
+
+        label.config(tect = "Score:{}".format(score))
+        canvas.delete("food")
+        food = Food()
+
+    else:
+        del snake.coordinates[-1]
+        canvas.delete(snake.squares[-1])
+        del snake.squares[-1]
+            
+
+    
+
+    window.after(SPEED, next_turn, snake, food)#we are not calling the function "next_turn"
 
     pass
 
 def change_direction(new_direction):
+    global direction
+
+    if new_direction =="left":
+        if direction!= "right":
+            direction == new_direction
+
+    elif new_direction =="right":
+        if direction!="left":
+            direction == new_direction
+    
+    elif new_direction =="up":
+        if direction!="down":
+            direction==new_direction
+
+    elif new_direction =="down":
+        if direction!="up":
+            direction== new_direction
     pass
 
 def check_collisions():
+
     pass
 
 def game_over():
@@ -57,7 +106,7 @@ window = Tk()
 window.title("Snake Game")
 window.resizable(True, True)
 score = 0
-direction = "up"
+direction = "down"
 label = Label(window, text = "Score:{}".format(score), font = ("Annabelle", 40 ))
 label.pack()
 canvas = Canvas(window, background = BACKGROUND_COLOR, width =GAME_WIDTH, height = GAME_HEIGHT)
@@ -70,15 +119,21 @@ screen_width = window.winfo_screenwidth()
 screen_height = window.winfo_screenheight()
 
 #adjusting window position
-x = int((screen_width/2) - (window_width/2))
-y = int((screen_height/2) - (window_height/2))
+x = int((screen_width/4) - (window_width/4))
+y = int((screen_height/4) - (window_height/4))
 
 
 window.geometry(f"{window_height}x{window_width}+{y}+{x}")
 
+#establishing snake controls with arrow keys
+window.bind("<Left>", lambda event: change_direction("left"))
+window.bind("<Right>", lambda event: change_direction("right"))
+window.bind("<Up>", lambda event: change_direction("up"))
+window.bind("<Down>", lambda event: change_direction("down"))
+
 snake = Snake()
 food = Food()
-
+next_turn(snake, food)
 
 
 
