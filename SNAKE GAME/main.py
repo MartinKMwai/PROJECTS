@@ -6,7 +6,7 @@ GAME_WIDTH = 500
 GAME_HEIGHT = 500
 SPEED = 200
 BODY_PARTS = 3
-SPACE_SIZE = 25
+SPACE_SIZE = 10
 BACKGROUND_COLOR = "#000000"
 FOOD_COLOR = "#FF0000"
 SNAKE_COLOR = "#00FF00"
@@ -35,7 +35,6 @@ class Food:
         self.coordinates = [x, y]
         canvas.create_oval (x, y, x+SPACE_SIZE, y+SPACE_SIZE, fill = FOOD_COLOR, tag = "food") 
 
-    pass
 
 def next_turn(snake, food):
     x, y = snake.coordinates[0]
@@ -68,13 +67,15 @@ def next_turn(snake, food):
         del snake.squares[-1]
             
 
-    
+    if check_collisions(snake):
+        game_over()
 
     window.after(SPEED, next_turn, snake, food)#we are not calling the function "next_turn"
 
     pass
 
 def change_direction(new_direction):
+
     global direction
 
     if new_direction =="left":
@@ -94,12 +95,28 @@ def change_direction(new_direction):
             direction = new_direction
     
 
-def check_collisions():
+def check_collisions(snake):
+    x, y = snake.coordinates[0]
+    if x < 0 or x >= GAME_WIDTH:
+     
+        return True
 
-    pass
+    elif y < 0 or y >= GAME_HEIGHT:
+        
+        return True
+    
+    for body_part in snake.coordinates[1:]:
+        if x == body_part[0] and y == body_part[1]:
+      
+            return True  
+
+    return False          
+
+
 
 def game_over():
-    pass
+    canvas. delete(ALL)
+    canvas.create_text(canvas.winfo_width()/2, canvas.winfo_height()/2, font = ("Consolas", 20), text = "GAME OVER, MOTHERFUCKER", fill ="red", tag = "gameover")
 
 
 window = Tk()
