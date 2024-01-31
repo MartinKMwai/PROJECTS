@@ -24,7 +24,7 @@ class Snake:
         for x, y in self.coordinates:
             square = canvas.create_rectangle(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill = SNAKE_COLOR, tag = Snake)  
             self.squares.append(square)
-    pass
+
 
 class Food:
 
@@ -72,7 +72,7 @@ def next_turn(snake, food):
 
     window.after(SPEED, next_turn, snake, food)#we are not calling the function "next_turn"
 
-    pass
+
 
 def change_direction(new_direction):
 
