@@ -15,6 +15,10 @@ symbol_count = {
     "D":5
 }
 
+def spin_the_slot_machine(rows, columns, symbols):
+    pass
+
+
 def deposit():
     while True:
         amount = input ("How much money do you want to deposit? $")
