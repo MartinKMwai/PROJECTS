@@ -1,11 +1,19 @@
 #we are going to creste a slot machine game, minus the interface, of course
-
+import random
 
 MAX_LINES = 3
 MAX_BET = 100
 MIN_BET = 1
 
+#Slot machine rows ans columns
+ROWS, COLUMNS = 3
 
+symbol_count = {
+    "A":2,
+    "B":3,
+    "C":4,
+    "D":5
+}
 
 def deposit():
     while True:
