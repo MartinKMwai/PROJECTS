@@ -39,8 +39,13 @@ def spin_the_slot_machine(rows, cols, symbols):
     return columns
 
 def print_slot_machine_output(columns):
-    pass
-
+    for row in range(len(columns[0])):
+        for i, column in enumerate(columns):
+            if i != len(columns) -1:
+                print (column[row], "|" )
+            else:
+                print (column[row])
+    
 
 
 def deposit():
@@ -102,6 +107,10 @@ def main():
     print (f"Number of lines : {lines}")
     print (f"Your bet per line: ${bet_per_line}")
     print (f"Your total betting amount is ${betting_amount} ")
+    slot_machine = spin_the_slot_machine(ROWS, COLS, symbol_count)
+    print_slot_machine_output(slot_machine)
+
+
 
 
 
