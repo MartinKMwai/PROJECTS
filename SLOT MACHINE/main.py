@@ -5,8 +5,8 @@ MAX_LINES = 3
 MAX_BET = 100
 MIN_BET = 1
 
-#Slot machine rows ans columns
-ROWS, COLUMNS = 3
+#Slot machine rows and columns
+ROWS, COLS = 3
 
 symbol_count = {
     "A":2,
@@ -15,7 +15,30 @@ symbol_count = {
     "D":5
 }
 
-def spin_the_slot_machine(rows, columns, symbols):
+def spin_the_slot_machine(rows, cols, symbols):
+    all_symbols =[]
+    #symbol is the key
+    #symbol_count is the value
+    #symbols.items gives you the values and the key in dictionary
+    for symbol, symbol_count in symbols.items():
+        for _ in range(symbol_count):
+            all_symbols.append(symbol)
+
+    columns = []
+    for _ in range (cols):
+        column = []
+        #making a copy of the all_symbols list. That's what the colon is for
+        current_symbols = all_symbols[:]
+        for _ in range (rows):
+            value = random.choice(current_symbols)
+            current_symbols.remove(value)
+            column.append(value)
+        
+        columns.append(column)
+
+    return columns
+
+
     pass
 
 
