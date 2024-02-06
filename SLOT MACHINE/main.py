@@ -38,8 +38,9 @@ def spin_the_slot_machine(rows, cols, symbols):
 
     return columns
 
-
+def print_slot_machine_output(columns):
     pass
+
 
 
 def deposit():
