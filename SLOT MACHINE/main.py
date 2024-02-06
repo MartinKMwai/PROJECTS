@@ -47,7 +47,7 @@ def print_slot_machine_output(columns):
             else:
                 print (column[row], end = " ")
     
-
+        print()
 
 def deposit():
     while True:
