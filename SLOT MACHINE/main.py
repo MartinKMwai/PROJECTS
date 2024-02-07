@@ -16,6 +16,9 @@ symbol_count = {
     "D":5
 }
 
+def check_winnings(columns, lines, bet_per_line, value):
+    pass
+
 def spin_the_slot_machine(rows, cols, symbols):
     all_symbols =[]
     #symbol is the key
