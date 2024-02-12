@@ -1,6 +1,7 @@
 #we are going to creste a slot machine game, minus the interface, of course
 import random
 
+
 MAX_LINES = 3
 MAX_BET = 100
 MIN_BET = 1
@@ -37,7 +38,6 @@ def check_winnings(columns, lines, bet_per_line, value):
 
     return winnings 
     
-    pass
 
 def spin_the_slot_machine(rows, cols, symbols):
     all_symbols =[]
