@@ -1,4 +1,4 @@
-#we are going to creste a slot machine game, minus the interface, of course
+#we are going to create a slot machine game, minus the interface, of course
 import random
 
 
