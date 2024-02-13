@@ -27,6 +27,8 @@ symbol_value = {
 
 def check_winnings(columns, lines, bet_per_line, value):
     winnings = 0
+    winning_lines = []
+
     for line in range(lines):
         symbol = columns[0][line]
         for column in columns:
@@ -34,9 +36,11 @@ def check_winnings(columns, lines, bet_per_line, value):
             if symbol_to_check != symbol:
                 break
         else:
-            winnings += values[symbol] * bet_per_line
+            winnings += value[symbol] * bet_per_line
+            winning_lines.append(line + 1)
 
-    return winnings 
+
+    return winnings,  winning_lines
     
 
 def spin_the_slot_machine(rows, cols, symbols):
@@ -123,26 +127,35 @@ def amount_per_line(lines, amount):
             print ("Please input the bet that you want to mske in number format.")
     return bet_per_line, betting_amount
 
-   
-def main():
-    amount = deposit()
+
+def gameplay(amount):
     lines = get_number_of_betting_lines()
     bet_per_line, betting_amount = amount_per_line(lines, amount)
-    print (amount, lines)
+    #print (amount, lines)
     print (f"Your balance is {amount}")
     print (f"Number of lines : {lines}")
     print (f"Your bet per line: ${bet_per_line}")
     print (f"Your total betting amount is ${betting_amount} ")
     slot_machine = spin_the_slot_machine(ROWS, COLS, symbol_count)
     print_slot_machine_output(slot_machine)
-    winnings = check_winnings(slot_machine, lines, bet_per_line, symbol_value)
-    print (f" Your winnings are ${winnings}")
-    
+    winnings,  winning_lines = check_winnings(slot_machine, lines, bet_per_line, symbol_value)
+    print (f" Your winnings are ${winnings}.")
+    print (f" You won on the following lines:", *winning_lines)
+    remaining_balance =  winnings - betting_amount
+    #print(f"Your remaining balance is ${remaining_balance}.")
+    return remaining_balance
 
 
 
-
-
+def main():
+    amount = deposit()
+    while True:
+        print (f"Current balance is ${amount}")
+        spin = input ("Press ENTER to spin the slot machine. To quit, press Q.")
+        if spin == "Q":
+            print (f"Coward, Goodbye")
+            break
+        amount += gameplay(amount)
 
 main()
 
