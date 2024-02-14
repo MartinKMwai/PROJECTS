@@ -156,3 +156,8 @@ next_turn(snake, food)
 
 window.mainloop ()
 
+'''Ideas to improve this project:
+
+    1. Allow for the option to replay or quit.
+    2. Keep a top the score at the top for a given play session.
+'''
