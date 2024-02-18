@@ -160,4 +160,5 @@ window.mainloop ()
 
     1. Allow for the option to replay or quit.
     2. Keep a top the score at the top for a given play session.
+    3. Fix the snake collision detection function, so that the game ends once it happens.
 '''
