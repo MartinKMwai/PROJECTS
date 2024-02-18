@@ -154,6 +154,7 @@ def main():
         spin = input ("Press ENTER to spin the slot machine. To quit, press Q.")
         if spin == "Q":
             print (f"Coward, Goodbye")
+            print ("")
             break
         amount += gameplay(amount)
 
