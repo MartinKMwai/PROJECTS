@@ -24,7 +24,7 @@ def find_all_game_paths(source):
 
 
 def create_directory(path):
-    if not os.path.exist(path):
+    if not os.path.exists(path):
         os.mkdir(path)
 
 def main(source, target):
