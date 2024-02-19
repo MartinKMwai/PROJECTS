@@ -22,7 +22,10 @@ def find_all_game_paths(source):
 
     return game_paths    
 
-   
+
+def create_directory(path):
+    if not os.path.exist(path):
+        os.mkdir(path)
 
 def main(source, target):
     current_working_directory = os.getcwd()
@@ -30,6 +33,7 @@ def main(source, target):
     #do not use string concatenations since rthe path dividwers are different depending on the os
     target_path = os.path.join(current_working_directory, target)
     path_to_games = find_all_game_paths(source_path)
+    create_directory(target_path)
 
     print(path_to_games)
 
