@@ -23,6 +23,18 @@ def find_all_game_paths(source):
     return game_paths    
 
 
+'''Getting the names of the games, stripping their game tag and then loading the names onto a target'''
+
+def get_name_from_paths(game_paths, stripped_tag, target):
+    new_game_names = []
+    for path in game_paths:
+        _, dir_name = os.path.split(path) #do not use regex or other character-dependent methods, use built-in functions
+        
+        
+
+
+    pass
+
 def create_directory(path):
     if not os.path.exists(path):
         os.mkdir(path)
