@@ -160,3 +160,5 @@ def main():
 
 main()
 
+'''ERRORS TO FIX:
+1. Allow the depositing of additional funds if funds run out.'''
