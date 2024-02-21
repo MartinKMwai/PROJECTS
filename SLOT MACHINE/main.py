@@ -124,7 +124,7 @@ def amount_per_line(lines, amount):
             else:
                 print ("Please input a betting amount between $" + str(MIN_BET) + " and $" + str(MAX_BET) + "." ) 
         else:
-            print ("Please input the bet that you want to mske in number format.")
+            print ("Please input the bet that you want to make in number format.")
     return bet_per_line, betting_amount
 
 
