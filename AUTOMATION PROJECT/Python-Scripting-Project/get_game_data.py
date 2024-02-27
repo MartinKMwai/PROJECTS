@@ -1,8 +1,8 @@
 #time to automate the living fuck outta this bitch
 
 import os 
-import json #dealinmg with json files
-import shutil #copy and overwrite on files. File operationms here
+import json #dealing with json files
+import shutil #copy and overwrite on files. File operations here
 from subprocess import PIPE, run #run any terminal commands that we want
 import sys #access to cmd args
 
@@ -40,6 +40,12 @@ def create_directory(path):
     if not os.path.exists(path):
         os.mkdir(path)
 
+def copy_and_overwrite_names(source, destination):
+    if os.path.exists(destination):
+        shutil.rmtree(destination) #removes destination folder. Recursive delete
+    shutil.copytree(source, destination) #copies the contents of the source into the destination
+   
+
 def main(source, target):
     current_working_directory = os.getcwd()
     source_path = os.path.join(current_working_directory, source)
@@ -49,6 +55,13 @@ def main(source, target):
     path_to_games = find_all_game_paths(source_path)
 
     new_game_directories = get_name_from_paths (path_to_games, "_game")
+
+#we need to loop through all paths that we have, then run the copy and overwrite command
+    for source, destination in zip(path_to_games, new_games_directory):
+        destination_path =  os.path.join(target_path, destination)
+        copy_and_overwrite_names(source, destination_path)
+        #RESUME HERE
+
     create_directory(target_path)
 
     print(new_game_directories)
