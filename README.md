@@ -6,4 +6,4 @@ BRIEF DESCRIPTIONS:
 
 2. SLOT MACHINE - Logic execution, text based
 
-3. SNAKE GAME - Logic execution, andd thinking of (somewhat) edge cases. Very nostalgic
+3. SNAKE GAME - Logic execution, and consideration of (somewhat) edge cases. Very nostalgic.
