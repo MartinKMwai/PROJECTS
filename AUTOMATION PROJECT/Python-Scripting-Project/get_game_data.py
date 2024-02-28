@@ -45,6 +45,17 @@ def copy_and_overwrite_names(source, destination):
         shutil.rmtree(destination) #removes destination folder. Recursive delete
     shutil.copytree(source, destination) #copies the contents of the source into the destination
    
+def make_json_metadata_file(path, game_directories):
+    metadata = {
+        "GameName": game_directories,
+        "NumberOfGames": len(game_directories)
+    }
+
+    with open(path, "w") as file: #W = write and overwrite, r = read. Using "With" ensures the file closes once we exit the function
+        json.dump(metadata, file, indent = 4)
+
+
+
 
 def main(source, target):
     current_working_directory = os.getcwd()
@@ -56,15 +67,19 @@ def main(source, target):
 
     new_game_directories = get_name_from_paths (path_to_games, "_game")
 
+    create_directory(target_path)
+
 #we need to loop through all paths that we have, then run the copy and overwrite command
-    for source, destination in zip(path_to_games, new_games_directory):
+    for source, destination in zip(path_to_games, new_game_directories): #takes two lists, and creates tumples matching the values using their in-list indexes
         destination_path =  os.path.join(target_path, destination)
         copy_and_overwrite_names(source, destination_path)
         #RESUME HERE
 
-    create_directory(target_path)
+    json_path = os.path.join(target_path, "metadata.json")
 
-    print(new_game_directories)
+    make_json_metadata_file(json_path, new_game_directories)
+
+  
 
 
 
