@@ -55,6 +55,8 @@ def make_json_metadata_file(path, game_directories):
         json.dump(metadata, file, indent = 4)
 
 
+def compiling_game_files(new_game_directories):
+    pass
 
 
 def main(source, target):
@@ -69,7 +71,7 @@ def main(source, target):
 
     create_directory(target_path)
 
-#we need to loop through all paths that we have, then run the copy and overwrite command
+    #we need to loop through all paths that we have, then run the copy and overwrite command
     for source, destination in zip(path_to_games, new_game_directories): #takes two lists, and creates tumples matching the values using their in-list indexes
         destination_path =  os.path.join(target_path, destination)
         copy_and_overwrite_names(source, destination_path)
