@@ -7,6 +7,8 @@ from subprocess import PIPE, run #run any terminal commands that we want
 import sys #access to cmd args
 
 GAME_DIR_PATTERN ="game" 
+CODEFILE_EXTENSION = ".go"
+COMPILE_COMMAND = ["go", "build"]
 
 
 def find_all_game_paths(source):
@@ -56,6 +58,26 @@ def make_json_metadata_file(path, game_directories):
 
 
 def compiling_game_files(new_game_directories):
+    code_file_name = None
+    for root, dirs, files in os.walk(new_game_directories):
+        for file in files:
+            if file.endswith(CODEFILE_EXTENSION): 
+                code_file_name = file
+                break
+
+        break
+
+    if code_file_name is None:
+        return
+
+    command = COMPILE_COMMAND + [code_file_name]
+
+
+    
+
+
+
+
     pass
 
 
@@ -80,6 +102,7 @@ def main(source, target):
     json_path = os.path.join(target_path, "metadata.json")
 
     make_json_metadata_file(json_path, new_game_directories)
+    
 
   
 
