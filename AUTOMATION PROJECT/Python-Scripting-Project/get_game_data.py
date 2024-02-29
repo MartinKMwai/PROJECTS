@@ -57,9 +57,9 @@ def make_json_metadata_file(path, game_directories):
         json.dump(metadata, file, indent = 4)
 
 
-def compiling_game_files(new_game_directories):
+def compiling_game_files(path):
     code_file_name = None
-    for root, dirs, files in os.walk(new_game_directories):
+    for root, dirs, files in os.walk(path):
         for file in files:
             if file.endswith(CODEFILE_EXTENSION): 
                 code_file_name = file
@@ -71,14 +71,21 @@ def compiling_game_files(new_game_directories):
         return
 
     command = COMPILE_COMMAND + [code_file_name]
+    running_command = (command, path)
 
 
     
 
 
 
+def running_command(command, path):
+    current_working_directory = os.getcwd()
+    os.chdir(path)
 
-    pass
+    runner = run(command, stdout = PIPE, stdin =PIPE, universal_newlines = True)
+    print ("compile result", runner)
+
+    os.chdir(current_working_directory)
 
 
 def main(source, target):
@@ -87,24 +94,24 @@ def main(source, target):
     #do not use string concatenations since rthe path dividwers are different depending on the os
     target_path = os.path.join(current_working_directory, target)
     
-    path_to_games = find_all_game_paths(source_path)
+    game_paths = find_all_game_paths(source_path)
 
-    new_game_directories = get_name_from_paths (path_to_games, "_game")
+    new_game_directories = get_name_from_paths (game_paths, "_game")
 
     create_directory(target_path)
 
     #we need to loop through all paths that we have, then run the copy and overwrite command
-    for source, destination in zip(path_to_games, new_game_directories): #takes two lists, and creates tumples matching the values using their in-list indexes
+    for source, destination in zip(game_paths, new_game_directories): #takes two lists, and creates tumples matching the values using their in-list indexes
         destination_path =  os.path.join(target_path, destination)
         copy_and_overwrite_names(source, destination_path)
-        #RESUME HERE
+        compiling_game_files(destination_path)
+        
 
     json_path = os.path.join(target_path, "metadata.json")
 
     make_json_metadata_file(json_path, new_game_directories)
     
 
-  
 
 
 
