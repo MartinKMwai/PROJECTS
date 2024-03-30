@@ -7,3 +7,7 @@ BRIEF DESCRIPTIONS:
 2. SLOT MACHINE - Logic execution, text based
 
 3. SNAKE GAME - Logic execution, and consideration of (somewhat) edge cases. Very nostalgic.
+
+4. IMDB SCRAPPER - A number of scripts to grab the imdb data on the highest grossing current movies
+
+5. 
