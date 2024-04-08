@@ -8,3 +8,4 @@ BRIEF DESCRIPTIONS:
 
 3. SNAKE GAME - Logic execution, and consideration of (somewhat) edge cases. Very nostalgic.
 
+4. FAST API - Learning how to create APIs using FAST API. Requires the uvicorn package. (pip install uvicorn)
