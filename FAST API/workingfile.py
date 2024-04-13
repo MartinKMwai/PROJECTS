@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Path
 
 app = FastAPI()
 
@@ -21,5 +21,5 @@ inventory = {
 }
 
 @app.get("/get-item/{item_id}")
-def get_item(item_id: int):
+def get_item(item_id: int = Path(description = "The ID of the item you'd like to view", gt = 0, le = 5)):
     return inventory[item_id]
