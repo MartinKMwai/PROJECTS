@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ReviewService {
-    private ReviewRepository reviewRepository;
+    public ReviewRepository reviewRepository;
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -18,8 +18,6 @@ public class ReviewService {
     public Review createReview(String reviewBody, String imdbId){
         Review review = reviewRepository.insert(new Review(reviewBody));
 
-        //insert review to database
-        reviewRepository.insert(review);
         //associate the review with one of the movies
         mongoTemplate.update(Movie.class)
                 .matching(Criteria.where("imdbId").is(imdbId))

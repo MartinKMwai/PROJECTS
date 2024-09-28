@@ -52,7 +52,7 @@ def next_turn(snake, food):
 
     if direction == "up":
         y -= SPACE_SIZE
-    elif direction == "down":
+    elif direction == "down" :
         y += SPACE_SIZE
     elif direction == "right":
         x += SPACE_SIZE
